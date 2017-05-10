@@ -23,9 +23,9 @@ public class PlayerControl2d : MonoBehaviour
     public float distanceZ = 10;
 
     //各种速度
-	public float maxSpeed = 20f;
-    public float speed = 10f;
-    public float jumpForce = 1f;
+	public float maxSpeed = 80f;
+    public float speed = 20f;
+    public float jumpForce = 70f;
 
     private Transform m_camera;
     //目标点坐标
@@ -116,12 +116,21 @@ public class PlayerControl2d : MonoBehaviour
 		if (moveable) {
 			//moving
 			if (rb.velocity.x * horizontal < maxSpeed) {
-				rb.AddForce (Vector2.right * speed * horizontal);
+//				rb.AddForce (Vector2.right * speed * horizontal);
+//				horizontal is a float from 0 to 1 -> so in the end char will reach to max speed
+				if (horizontal < 0.1f && horizontal > -0.1f) {
+					horizontal = 0;
+				}
+				rb.velocity = new Vector2 ( maxSpeed*horizontal, rb.velocity.y);
+//				print (horizontal);
+//				print (rb.velocity.x);
+//				print (maxSpeed);
 			}
 
-			if (Mathf.Abs (rb.velocity.x) > maxSpeed) {
-				rb.velocity = new Vector2 (Mathf.Sign (rb.velocity.x) * maxSpeed, rb.velocity.y);
-			}
+//			if (Mathf.Abs (rb.velocity.x) > maxSpeed) {
+//				rb.velocity = new Vector2 (Mathf.Sign (rb.velocity.x) * maxSpeed, rb.velocity.y);
+////				print ("11");
+//			}
 
 			//filp
 			if (Input.GetKey (KeyCode.A)) {
@@ -133,21 +142,25 @@ public class PlayerControl2d : MonoBehaviour
 			}
 
 			//jump
-			print(ground);
+//			print(ground);
 			if (ground) {
 				jumping = false;
 				secondJump = false;
 				if (Input.GetButton ("Jump")) {
-					rb.AddForce (Vector2.up * jumpForce);
+					rb.velocity = new Vector2 ( maxSpeed*horizontal, jumpForce);
+//					rb.AddForce (Vector2.up * jumpForce);
+
 					secondJump = true;
 				}
 			} else {
 				jumping = true;
 				if (secondJump && Input.GetButtonDown ("Jump")) {
-					rb.AddForce (Vector2.up * jumpForce);
+//					rb.AddForce (Vector2.up * jumpForce);
+					rb.velocity = new Vector2 ( maxSpeed*horizontal, jumpForce);
 					secondJump = false;
 				}
 			}
+//			print (rb.velocity.y);
 		}
     }
 		
