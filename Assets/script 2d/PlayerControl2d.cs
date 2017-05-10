@@ -146,20 +146,38 @@ public class PlayerControl2d : MonoBehaviour
 			if (ground) {
 				jumping = false;
 				secondJump = false;
+
 				if (Input.GetButton ("Jump")) {
-					rb.velocity = new Vector2 ( maxSpeed*horizontal, jumpForce);
+					rb.velocity = new Vector2 ( maxSpeed*horizontal, 3f* jumpForce);
+
+//					if (rb.velocity.x >=3 ) {
+//						rb.velocity = new Vector2 ( maxSpeed*horizontal, 1.6f* jumpForce);
+//					}
+
 //					rb.AddForce (Vector2.up * jumpForce);
 
 					secondJump = true;
 				}
 			} else {
 				jumping = true;
+				print (rb.velocity.y);
+				//Limit Jump Heights 
+				if (rb.velocity.y <= 300 && rb.velocity.y > 0) {
+					rb.velocity = new Vector2 ( maxSpeed*horizontal, (-jumpForce*0.2f)+rb.velocity.y);
+				}
+
+				//Limits downward slow stable process
+				if (rb.velocity.y <= 0 ) {
+					rb.velocity = new Vector2 ( maxSpeed*horizontal, (-jumpForce*0.2f)+rb.velocity.y);
+				}
 				if (secondJump && Input.GetButtonDown ("Jump")) {
 //					rb.AddForce (Vector2.up * jumpForce);
-					rb.velocity = new Vector2 ( maxSpeed*horizontal, jumpForce);
+					rb.velocity = new Vector2 ( maxSpeed*horizontal, jumpForce*3f);
 					secondJump = false;
 				}
 			}
+
+
 //			print (rb.velocity.y);
 		}
     }

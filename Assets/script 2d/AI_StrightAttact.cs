@@ -44,7 +44,7 @@ public class AI_StrightAttact : MonoBehaviour {
 		}
 		else {
 			//Not in sight
-//			selfbd.AddForce (4000  * (Mathf.Sign(selfbd.velocity.x) >0f ? Vector2.left : Vector2.right));
+			selfbd.AddForce (4000  * (Mathf.Sign(selfbd.velocity.x) >0f ? Vector2.left : Vector2.right));
 ////			print (Mathf.Sign(selfbd.velocity.x) > 0f ? Vector2.left : Vector2.right);
 //			print(Mathf.Sign(selfbd.velocity.x) >0f ? Vector2.left : Vector2.right);
 			//				

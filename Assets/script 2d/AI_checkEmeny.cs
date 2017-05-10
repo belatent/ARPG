@@ -71,16 +71,16 @@ public class AI_checkEmeny : MonoBehaviour {
 			}
 			else if(frontMid.collider!= null && frontMid.collider.gameObject != null)
 			{
-//				res = frontMid.collider.gameObject;	
+				res = frontMid.collider.gameObject;	
 			}
 			else if(frontBot.collider!= null && frontBot.collider.gameObject != null)
 			{
-//				res = frontBot.collider.gameObject;	
+				res = frontBot.collider.gameObject;	
 //				
 			}
 			else if(backTop.collider!= null && backTop.collider.gameObject != null)
 			{
-//				res = backTop.collider.gameObject;	
+				res = backTop.collider.gameObject;	
 //				print("2222222222");
 			}
 			else if(backMid.collider!= null && backMid.collider.gameObject != null)
@@ -89,7 +89,7 @@ public class AI_checkEmeny : MonoBehaviour {
 			}
 			else if(backBot.collider!= null && backBot.collider.gameObject != null)
 			{
-//				res = backBot.collider.gameObject;	
+				res = backBot.collider.gameObject;	
 			}
 //			print (res.name);
 		}
