@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class CharacterInfo : MonoBehaviour {
 	public float atk = 1;
 	public float hp = 3;
-	public Vector2 pos_offset;
-	public GameObject canvas;
-	public float offset;
 
 	private float hp_curr;
 	private Slider healUI;

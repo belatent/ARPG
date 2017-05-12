@@ -13,12 +13,6 @@ public class PlayerControl2d : MonoBehaviour
 	//受伤闪烁频率，越小越快，最小为1
 	public int flashRate = 5;
 
-	//摄像头的移动范围
-	public float minX = 8;
-	public float maxX = 724;
-	public float minY = 7;
-	public float maxY = 176;
-
     //摄像头环绕角色都距离
     public float distanceZ = 10;
 
@@ -48,12 +42,6 @@ public class PlayerControl2d : MonoBehaviour
 	private bool secondJump; 
 	private bool ground;
 	private bool moveable;
-
-
-    void Awake()
-    {
-        m_camera = Camera.main.transform;
-    }
 
     void Start()
     {
@@ -180,35 +168,5 @@ public class PlayerControl2d : MonoBehaviour
 
 //			print (rb.velocity.y);
 		}
-    }
-		
-    /// <summary>
-    /// 摄像头跟随方法
-    /// </summary>
-    private void CamFollow()
-    {
-        Quaternion rotation = Quaternion.Euler(0, 0, 0);
-
-        Vector3 Pos = new Vector3(0, 0, distanceZ);
-
-        Vector3 move = rotation * Pos;
-
-		Vector3 newPos = body.transform.position + move;
-
-
-		if (newPos.x > maxX) {
-			newPos.x = maxX;
-		}else if (newPos.x < minX) {
-			newPos.x = minX;
-		}
-
-		if (newPos.y > maxY) {
-			newPos.y = maxY;
-		}else if (newPos.y < minY) {
-			newPos.y = minY;
-		}
-		m_camera.position = newPos;
-
-        m_camera.rotation = rotation;
     }
 }
